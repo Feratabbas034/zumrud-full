@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Paneli</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <h1 class="neon">Admin Paneli</h1>
+    <p>Şifre: admin123</p>
+    <a href="../index.html">← Ana Sayfa</a>
+    
+    <div class="admin-menu">
+        <a href="#" onclick="alert('Makale ekleme: localStorage ile')">Makale Ekle</a>
+        <a href="#" onclick="alert('Hadis ekleme: localStorage ile')">Hadis Ekle</a>
+        <a href="#" onclick="alert('IP ban: localStorage ile')">IP Ban</a>
+    </div>
+
+    <script>
+        if (prompt('Admin şifresi?') !== 'admin123') {
+            alert('Yetkisiz erişim!');
+            location.href = '../index.html';
+        }
+    </script>
+</body>
+</html>
