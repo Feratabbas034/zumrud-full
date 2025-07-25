@@ -1,0 +1,35 @@
+:root {
+    --bg: #0a0a0a;
+    --neon: #00ff41;
+    --neon-glow: 0 0 10px #00ff41;
+    --text: #ffffff;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background: #000;
+}
+.neon { color: var(--neon); text-shadow: var(--neon-glow); }
+.neon-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--neon);
+    color: var(--neon);
+    text-decoration: none;
+    background: transparent;
+}
+.hero {
+    text-align: center;
+    padding: 2rem;
+}
+.prayer-widget {
+    margin: 2rem;
+    padding: 1rem;
+    border: 1px solid var(--neon);
+}
