@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zümrüd-ü Ankebut</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <nav class="navbar">
+        <div class="logo">
+            <span class="neon">ZÜMRÜD</span>
+            <span class="white">Ü ANKEBUT</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="neon-hover">Ana Sayfa</a></li>
+            <li><a href="quran.html" class="neon-hover">Kur'an</a></li>
+            <li><a href="hadith.html" class="neon-hover">Hadis</a></li>
+            <li><a href="articles.html" class="neon-hover">Makaleler</a></li>
+            <li><a href="fatwa.html" class="neon-hover">Fetva</a></li>
+            <li><a href="chat.html" class="neon-hover">Sohbet</a></li>
+            <li><a href="admin/index.html" class="neon-hover">Admin</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h1 class="neon-title">ZÜMRÜD-Ü ANKEBUT</h1>
+            <p class="subtitle">İslami İçerik & Anonim Sohbet Platformu</p>
+            
+            <div id="prayer-times" class="prayer-widget">
+                <h3 class="neon">📿 Bugünkü Namaz Vakitleri</h3>
+                <div id="times">Yükleniyor...</div>
+                <button onclick="playEzan()" class="neon-button">🔊 Ezan Dinle</button>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="quran.html" class="neon-button">Kur'an Oku</a>
+                <a href="chat.html" class="neon-button">Sohbete Katıl</a>
+            </div>
+        </section>
+    </main>
+
+    <audio id="ezanAudio" src="https://cdn.jsdelivr.net/gh/k1m1k0/zumrud-full@main/assets/ezan.mp3"></audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Namaz Vakitleri
+        async function loadPrayerTimes() {
+            const res = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Istanbul&country=Turkey&method=2');
+            const data = await res.json();
+            const t = data.data.timings;
+            document.getElementById('times').innerHTML = `
+                İmsak: ${t.Fajr} | Öğle: ${t.Dhuhr} | İkindi: ${t.Asr} | Akşam: ${t.Maghrib} | Yatsı: ${t.Isha}
+            `;
+        }
+        loadPrayerTimes();
+
+        // Ezan
+        function playEzan() {
+            document.getElementById('ezanAudio').play();
+        }
+
+        // Particles
+        particlesJS("particles-js", {
+            particles: { number: { value: 80 }, color: { value: "#00ff41" }, size: { value: 3 } }
+        });
+
+        // PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
